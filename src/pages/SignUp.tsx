@@ -42,7 +42,7 @@ const styles = {
 interface FormData {
   email: string;
   password: string;
-  passwordConfirmation: string;
+  confirmPassword: string;
 }
 
 function SignUp() {
@@ -51,7 +51,7 @@ function SignUp() {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
-    passwordConfirmation: "",
+    confirmPassword: "",
   });
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -65,21 +65,21 @@ function SignUp() {
     if (
       !formData?.email ||
       !formData?.password ||
-      !formData?.passwordConfirmation
+      !formData?.confirmPassword
     ) {
       setMessage({ type: "error", text: "Todos os campos são obrigatórios!" });
       return;
     }
 
-    const { email, password, passwordConfirmation } = formData;
+    const { email, password, confirmPassword } = formData;
 
-    if (password !== passwordConfirmation) {
+    if (password !== confirmPassword) {
       setMessage({ type: "error", text: "As senhas devem ser iguais!" });
       return;
     }
 
     try {
-      await api.signUp({ email, password });
+      await api.signUp({ email, password, confirmPassword });
       setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
       navigate("/login");
     } catch (error: Error | AxiosError | any) {
@@ -131,11 +131,11 @@ function SignUp() {
           value={formData.password}
         />
         <PasswordInput
-          name="passwordConfirmation"
+          name="confirmPassword"
           sx={styles.input}
           label="Confirme sua senha"
           onChange={handleInputChange}
-          value={formData.passwordConfirmation}
+          value={formData.confirmPassword}
         />
         <Box sx={styles.actionsContainer}>
           <Link component={RouterLink} to="/login">

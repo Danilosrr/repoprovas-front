@@ -9,6 +9,12 @@ interface UserData {
   password: string;
 }
 
+interface UserRegister {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 function getConfig(token: string) {
   return {
     headers: {
@@ -21,7 +27,7 @@ async function signUp(signUpData: UserData) {
   await baseAPI.post("/sign-up", signUpData);
 }
 
-async function signIn(signInData: UserData) {
+async function signIn(signInData: UserRegister) {
   return baseAPI.post<{ token: string }>("/sign-in", signInData);
 }
 
