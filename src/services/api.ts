@@ -23,11 +23,11 @@ function getConfig(token: string) {
   };
 }
 
-async function signUp(signUpData: UserData) {
+async function signUp(signUpData: UserRegister) {
   await baseAPI.post("/sign-up", signUpData);
 }
 
-async function signIn(signInData: UserRegister) {
+async function signIn(signInData: UserData) {
   return baseAPI.post<{ token: string }>("/sign-in", signInData);
 }
 
