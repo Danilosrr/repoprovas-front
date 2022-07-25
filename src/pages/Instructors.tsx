@@ -134,7 +134,7 @@ function CategorieAccordions({
               target="_blank"
               underline="none"
               color="inherit"
-            >{`${test.name} (${test.teacher})`}</Link>
+            >{`${test.name} (${test.discipline})`}</Link>
           </Typography>
         )})  
         }
